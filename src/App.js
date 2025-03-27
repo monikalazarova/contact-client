@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import ContactList from './components/ContactList';
+import AddContact from './components/AddContact';
+import axios from 'axios';
 
 function App() {
+  const [contacts, setContacts] = useState([]);
+
+  //retrieve the contacts when the application loads
+  useEffect(function() {
+    async function fetchContacts() {
+        try{
+            const response = await axios.get ('http://localhost:4000/contacts');
+            setContacts(response.data);
+        } catch (error) {
+            console.error ("Error fetching the contacts", error);
+        }
+    }
+        fetchContacts();
+}, []); // the effect runs only once when the component mounts
+
+//handle adding a new contact
+  function handleContactAdded(newContact) {
+    setContacts ((prevContacts) => [...prevContacts, newContact]);
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Manage Your Contacts</h1>
+      <AddContact onContactAdded={handleContactAdded}/>
+      <ContactList contacts={contacts}/>
     </div>
   );
 }
