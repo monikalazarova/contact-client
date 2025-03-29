@@ -12,7 +12,10 @@ npm install
 npm run build
 npm uninstall -g serve || true #ignore error if there is no installation 
 npm install -g serve@13.0.2
+echo $PRIVATE_KEY > privatekey.pem
+eho $SERVER > server.crt
 pm2 delete contact-client || true
 # Start the application with the process name example_app using pm2
 pm2 start serve --name contact-client -- -s build -l 3000
 pm2 save
+pm2 startup 
