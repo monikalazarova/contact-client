@@ -17,4 +17,5 @@ eho $SERVER > server.crt
 pm2 delete contact-client || true
 # Start the application with the process name example_app using pm2
 pm2 start serve --name contact-client -- -s build -l 3000
-pm2 save
+#Save
+pm2 save 
