@@ -23,5 +23,5 @@ jobs:
           command: npm install
       - run:
           name: build-react-app
-          command: npm run bild
+          command: npm run build
  
