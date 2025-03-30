@@ -19,6 +19,6 @@ const dist = path.join(__dirname, 'build');
 const serveApp = serve(dist);
 
 //creating an HTTPS server
-https.createServer(credentials, serveApp).listen(8443, () => {
-        console.log('HTTPS server listening on port 8443');
+https.createServer(credentials, serveApp).listen(443, () => {
+        console.log('HTTPS server listening on port 443');
     });
