@@ -12,7 +12,7 @@ const credentials = { key: privateKey, cert: certificate};
 //Setting up the server app
 const dist = './contact-client/build';
 
-const server = serve (dist, {port: 3000,});
+const app = serve (dist, {port: 3000,});
 
 //creating an HTTPS server
 https.createServer(credentials, server)
