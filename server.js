@@ -6,8 +6,8 @@ const serve= require('serve');
 // getting the private key and certificate from circleci environment variables
 //const privateKey = process.env.PRIVATE_KEY; 
 //const certificate = process.env.SERVER;
-const privateKey = fs.readFileSync(path.join(__dirname, 'privatekey.pem'), 'utf8'); 
-const certificate =  fs.readFileSync(path.join(__dirname, 'server.crt'), 'utf8');
+const privateKey = fs.readFileSync(path.join('/home/ubuntu/contact-client/privatekey.pem'), 'utf8'); 
+const certificate =  fs.readFileSync(path.join('/home/ubuntu/contact-client/server.crt'), 'utf8');
 
 //creating credentials for HTTPS
 const credentials = { key: privateKey, cert: certificate};
