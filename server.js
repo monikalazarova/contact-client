@@ -12,10 +12,9 @@ const credentials = { key: privateKey, cert: certificate};
 //Setting up the server app
 const dist = './contact-client/build';
 
-const app = serve (dist, {port: 3000,});
+const serveApp = serve(dist);
 
 //creating an HTTPS server
-https.createServer(credentials, server)
-    .listen(8443, () =>{
+https.createServer(credentials, serveApp).listen(8443, () => {
         console.log('HTTPS server listening on port 8443');
     });
