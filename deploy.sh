@@ -12,6 +12,8 @@ npm install
 npm run build
 npm uninstall -g serve || true #ignore error if there is no installation 
 npm install -g serve@13.0.2
+#check if it correctly installed
+serve --version
 echo $PRIVATE_KEY > privatekey.pem
 echo $SERVER > server.crt
 pm2 delete contact-client || true
