@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM circleci/node:22.13.0
+FROM circleci/node:latest
 ENV NODE_ENV=production
 COPY ["package.json", "package-lock.json*", "./"]
 RUN sudo npm install
