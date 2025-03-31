@@ -36,8 +36,8 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: test-run
-          command: npm run test
+          name: build-react-app
+          command: npm run build
       - run:
           name: docker-login
           command: docker login -u $DOCKER_USRNAME -p $DOCKER_PASSWORD
@@ -59,9 +59,7 @@ jobs:
       - run: 
           name: start-docker-container
           command: docker start integration_app
-      - run:
-          name: build-react-app
-          command: npm run build
+
   
   deploy:
     docker:
