@@ -40,7 +40,7 @@ jobs:
           command: npm run build
       - run:
           name: docker-login
-          command: docker login -u $DOCKER_USRNAME -p $DOCKER_PASSWORD
+          command: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
       - run:
           name: Build Docker Image
           command: docker build -t $IMAGE_NAME:latest .
