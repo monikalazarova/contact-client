@@ -23,10 +23,10 @@ RUN chown -R circleci:circleci /contact-client
 USER circleci
 
 #install the dependencies
-RUN npm install
+RUN npm install || (echo "npm install failed" && tail -n 20 /root/.npm/_logs/*)
 COPY . .
 #build the react app
-RUN npm run build
+RUN npm run build || (echo "npm build failed" && tail -n 20 /root/.npm/_logs/*)
 # Install PM2
 RUN npm install -g pm2
 #Install serve globally (to serve static files)
