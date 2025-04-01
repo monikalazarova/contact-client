@@ -22,12 +22,10 @@ jobs:
   build: 
     working_directory: ~/contact-client
     docker:
-      - image: node:22-alpine
+      - image: cimg/node:22.13.0
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
-          version: '20.10.9'
+      - setup_remote_docker
       - run:
           name: install-npm
           command: 'npm install -g npm@latest'
