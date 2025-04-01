@@ -27,7 +27,7 @@ RUN npm install || (echo "npm install failed" && tail -n 20 /root/.npm/_logs/*)
 COPY . .
 
 # check the permissions of the build directory
-RUN ls-l /contact-client/build
+RUN ls -l /contact-client/build
 
 #build the react app
 RUN npm run build || (echo "npm build failed" && tail -n 20 /root/.npm/_logs/*)
