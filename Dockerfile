@@ -1,9 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM node:22-alpine AS build
 
-#set the environment variable
-ENV NODE_ENV=production
-
 #set working directory
 WORKDIR /contact-client
 
@@ -26,8 +23,8 @@ USER circleci
 RUN npm install || (echo "npm install failed" && tail -n 20 /root/.npm/_logs/*)
 COPY . .
 
-# check the permissions of the build directory
-RUN ls -l /contact-client/build
+#ensurring the non-root user has permissions to the build directory
+RUN chown -R circleci:circleci /contact-client/build
 
 #build the react app
 RUN npm run build || (echo "npm build failed" && tail -n 20 /root/.npm/_logs/*)
