@@ -22,7 +22,7 @@ jobs:
   build: 
     working_directory: ~/contact-client
     docker:
-      - image: cimg/node:18
+      - image: cimg/node:22-alpine
     steps:
       - checkout
       - setup_remote_docker
@@ -74,7 +74,7 @@ jobs:
   
   deploy:
     docker:
-      - image: cimg/node:18
+      - image: cimg/node:22-alpine
     steps:
       - run:
           name: deploy-application
