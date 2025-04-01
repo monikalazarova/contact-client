@@ -1,16 +1,27 @@
 # syntax=docker/dockerfile:1
 FROM node:22-alpine AS build
-#create the circleci user and group
-RUN addgroup -S circleci && adduser -S circleci -G circleci
-#set workplace directory
-WORKDIR /workplace
-#working directory permissions
-RUN chown -R circleci:circleci /workplace
-# change the user
-USER circleci
+
 #set the environment variable
 ENV NODE_ENV=production
+
+#set working directory
+WORKDIR /contact-client
+
+#root user to set correct permission
+USER root 
+
+#creating non-root user to bypass permissions
+RUN addgroup -S circleci && adduser -S circleci -G circleci
+
+#copy the packages as a root user
 COPY ["package.json", "package-lock.json*", "./"]
+
+#working directory permissions
+RUN chown -R circleci:circleci /contact-client
+
+# change the user
+USER circleci
+
 #install the dependencies
 RUN npm install
 COPY . .
