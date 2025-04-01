@@ -20,7 +20,7 @@ RUN chown -R circleci:circleci /contact-client
 USER circleci
 
 #install the dependencies
-RUN npm install || (echo "npm install failed" && tail -n 20 /root/.npm/_logs/*)
+RUN npm ci || (echo "npm install failed" && tail -n 20 /root/.npm/_logs/*)
 COPY . .
 
 #ensurring the non-root user has permissions to the build directory
@@ -28,11 +28,15 @@ RUN chown -R circleci:circleci /contact-client/build
 
 #build the react app
 RUN npm run build || (echo "npm build failed" && tail -n 20 /root/.npm/_logs/*)
+
 # Install PM2
 RUN npm install -g pm2
+
 #Install serve globally (to serve static files)
 RUN npm install -g serve
+
 #exposing the port that the app will run on
 EXPOSE 8443
+
 #Start the app
 CMD [ "pm2", "start", "serve", "--", "-s", "build", "-l", "8443" ]
