@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM circleci/node:latest
+FROM node:18-alpine AS build
 #setting user to root to change the permissions
 USER root
 #working directory permissions
