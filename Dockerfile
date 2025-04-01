@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:18-alpine AS build
+FROM node:22-alpine AS build
 #setting user to root to change the permissions
 USER root
 #working directory permissions
