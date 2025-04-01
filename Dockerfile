@@ -2,6 +2,16 @@
 FROM circleci/node:latest
 ENV NODE_ENV=production
 COPY ["package.json", "package-lock.json*", "./"]
-RUN sudo npm install
+RUN npm install
 COPY . .
-CMD [ "npm", "start" ]
+
+#build the react app
+RUN npm run build
+# Install PM2
+RUN npm install -g pm2
+#Install serve globally (to serve static files)
+RUN npm install -g serve
+#exposing the port that the app will run on
+EXPOSE 8443
+#Start the app
+CMD [ "pm2", "start", "serve", "--", "-s", "build", "-l", "8443" ]
