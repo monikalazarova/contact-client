@@ -29,7 +29,7 @@ jobs:
       #checking user and permissions
       - run:
           name: Check current user and permissions
-          command: whoami && id && ls -la /node_modules
+          command: whoami && id && ls -la ./node_modules
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
