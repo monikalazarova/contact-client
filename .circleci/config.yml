@@ -25,7 +25,9 @@ jobs:
       - image: node:22-alpine
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: '20.10.7'
+          docker_layer_caching: true
       - run:
           name: install-npm
           command: 'npm install -g npm@latest'
