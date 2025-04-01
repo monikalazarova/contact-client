@@ -26,17 +26,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      #check docker
-      - run: 
-          name: Check Docker Environment
-          command: docker info && docker version
       - run:
           name: install-npm
-          command: sudo npm install -g npm@latest
-      #checking user and permissions
-      #- run:
-          #name: Check current user and permissions
-          #command: whoami && id && ls -la ./node_modules
+          command: sudo npm install -g npm@7
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - save_cache:
